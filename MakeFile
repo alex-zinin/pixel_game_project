@@ -1,0 +1,4 @@
+all:
+	g++ main.cpp ./vector2/vector2.cpp ./Entities/Entities.cpp ./Entity_Handler/Entity_Handler.cpp ./Game_World/Game_World.cpp ./link/link.cpp ./Drawer/Drawer.cpp ./unit_tests/unit_tests.cpp -o file -lsfml-graphics -lsfml-window -lsfml-system -lpthread && ./file
+
+
