@@ -257,6 +257,14 @@ Bon_Fire::Bon_Fire(int x, int y): Entity(x, y, BON_FIRE_HEALTH, Type_Of_Animatio
 }
 
 
+Torch::Torch(int x, int y): Entity(x, y, BON_FIRE_HEALTH, Type_Of_Animation::NONSTATIC, Type_Of_Moving::STATIC) {
+    this->has_collisions = true;
+    max_num_of_texture = 2;
+    entity_type = Entity_Type::TORCH;
+    damage = 10;
+}
+
+
 Fire_Shooter::Fire_Shooter(int x, int y): Entity(x, y, 100, Type_Of_Animation::NONSTATIC, Type_Of_Moving::NONSTATIC){
     this->has_collisions = true;
     max_num_of_texture = 89;
@@ -280,7 +288,7 @@ Magic::Magic(int x, int y, int speed_x, int speed_y): Entity(x, y, MAGIC_HEALTH,
     max_num_of_texture = 3;
     entity_type = Entity_Type::MAGIC;
     damage = FIREBALL_DAMAGE;
-    entity_speed = 2;
+    entity_speed = 1;
 }
 
 
@@ -312,7 +320,7 @@ Witch::Witch(int x, int y, int speed_x, int speed_y): Entity(x, y, WITCH_HEALTH,
 }
 
 void Witch::Set_Entity_Direction(const Entity& entity){
-    int distance_to_entity = 500;
+    int distance_to_entity = 300;
 
     Vector2 vector_to_enitity(entity.abs_pos_x - abs_pos_x,
                               entity.abs_pos_y - abs_pos_y);
@@ -325,4 +333,65 @@ void Witch::Set_Entity_Direction(const Entity& entity){
     vect_speed.Norm();
     Set_Speed(vect_speed*entity_speed);
 }
+
+
+Item::Item(int x, int y, Entity_Type ent_type): Entity(x, y, ITEM_HEALTH, Type_Of_Animation::STATIC, Type_Of_Moving::STATIC)
+{
+    entity_speed = 5;
+    max_num_of_texture = 1;
+    entity_type = ent_type;
+    size_x = 200;
+    size_y = 200;
+    sprite.setSize(sf::Vector2f(size_x,size_y));
+}
+
+
+Pit::Pit(int x, int y):Item(x, y, Entity_Type::PIT){
+
+}
+
+
+Basin::Basin(int x, int y):Item(x, y, Entity_Type::BASIN) {
+
+}
+
+
+Bench::Bench(int x, int y):Item(x, y, Entity_Type::BENCH) {
+
+}
+
+Cart::Cart(int x, int y):Item(x, y, Entity_Type::CART) {
+
+}
+
+Hay::Hay(int x, int y):Item(x, y, Entity_Type::HAY) {
+
+}
+
+Pillar::Pillar(int x, int y):Item(x, y, Entity_Type::PILLAR) {
+
+}
+
+Stump::Stump(int x, int y):Item(x, y, Entity_Type::STUMP) {
+
+}
+
+
+Tree1::Tree1(int x, int y):Item(x, y, Entity_Type::TREE1) {
+
+}
+
+Tree2::Tree2(int x, int y):Item(x, y, Entity_Type::TREE2) {
+
+}
+
+Tree3::Tree3(int x, int y):Item(x, y, Entity_Type::TREE3) {
+
+}
+
+House::House(int x, int y):Item(x,y, Entity_Type::HOUSE){
+
+}
+
+
 
