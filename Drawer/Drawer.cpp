@@ -75,9 +75,6 @@ void Info_Table::Show_Table(){
 
 
 
-
-
-
 Drawer::Drawer(sf::RenderWindow& wind, Game_World& gm): window(wind), game_world(gm),
                                                         screen(0, 0),
                                                         info_table(TABLE_X_SIZE, TABLE_Y_SIZE, wind, gm),
@@ -102,17 +99,19 @@ Drawer::Drawer(sf::RenderWindow& wind, Game_World& gm): window(wind), game_world
     }
     animation_texture[Entity_Type::ZOMBIE] = texture_zombie;
 
-
-    sf::Texture texture_wall;
-    texture_wall.setRepeated(true);
-    texture_wall.loadFromFile("textures/wall_texture.jpg");
-    static_textures[Entity_Type::WALL] = texture_wall;
-
-
-    sf::Texture texture_hospital;
-    texture_hospital.setRepeated(true);
-    texture_hospital.loadFromFile("textures/house/house.png");
-    static_textures[Entity_Type::HOSPITAL_HOUSE] = texture_hospital;
+    static_textures[Entity_Type::WALL].loadFromFile("textures/wall_texture.jpg");
+    static_textures[Entity_Type::HOSPITAL_HOUSE].loadFromFile("textures/house/house.png");
+    static_textures[Entity_Type::BENCH].loadFromFile("textures/items_textures/bench.png");
+    static_textures[Entity_Type::BASIN].loadFromFile("textures/items_textures/basin.png");
+    static_textures[Entity_Type::CART].loadFromFile("textures/items_textures/cart.png");
+    static_textures[Entity_Type::HAY].loadFromFile("textures/items_textures/hay.png");
+    static_textures[Entity_Type::PILLAR].loadFromFile("textures/items_textures/pillar.png");
+    static_textures[Entity_Type::PIT].loadFromFile("textures/items_textures/pit.png");
+    static_textures[Entity_Type::STUMP].loadFromFile("textures/items_textures/stump.png");
+    static_textures[Entity_Type::HOUSE].loadFromFile("textures/house/house2.png");
+    static_textures[Entity_Type::TREE1].loadFromFile("textures/forest_textures/tree1.png");
+    static_textures[Entity_Type::TREE2].loadFromFile("textures/forest_textures/tree2.png");
+    static_textures[Entity_Type::TREE3].loadFromFile("textures/forest_textures/tree3.png");
 
     int max_num_of_texture_bon_fire = Bon_Fire::MAX_NUM_OF_TEXTURE;
     std::vector<sf::Texture> texture_bon_fire(max_num_of_texture_bon_fire + 1);
@@ -121,6 +120,15 @@ Drawer::Drawer(sf::RenderWindow& wind, Game_World& gm): window(wind), game_world
         texture_bon_fire[i].loadFromFile("textures/bon_fire_textures/pos" +std::to_string(i)+".png");
     }
     animation_texture[Entity_Type::BON_FIRE] = texture_bon_fire;
+
+
+    int max_num_of_texture_torch = Torch::MAX_NUM_OF_TEXTURE;
+    std::vector<sf::Texture> texture_torch(max_num_of_texture_torch + 1);
+    for(int i = 0; i < max_num_of_texture_torch + 1; i++)
+    {
+        texture_torch[i].loadFromFile("textures/torch_textures/pos" +std::to_string(i)+".png");
+    }
+    animation_texture[Entity_Type::TORCH] = texture_torch;
 
     int max_num_of_texture_player = Player::MAX_NUM_OF_TEXTURE;
     std::vector<sf::Texture> player_texture(max_num_of_texture_player + 1);
@@ -214,25 +222,25 @@ void Drawer::Show_Player_Table(){
 void Drawer::Move_Screen_To_Player(){
     Player& player = game_world.Get_Player();
 
-    if(player.pos_y >= screen.size_y)
+    if(player.pos_y >= screen.size_y - 10)
     {
         screen.pos_y += screen.size_y/2;
         player.pos_y = screen.size_y/2;
     }
 
-    if(player.pos_x >= screen.size_x)
+    if(player.pos_x >= screen.size_x - 10)
     {
         screen.pos_x += screen.size_x/2;
         player.pos_x = screen.size_x/2;
     }
 
-    if(player.pos_y <= 0)
+    if(player.pos_y <= 10)
     {
         screen.pos_y -= screen.size_y/2;
         player.pos_y = screen.size_y/2;
     }
 
-    if(player.pos_x <= 0)
+    if(player.pos_x <= 10)
     {
         screen.pos_x -= screen.size_x/2;
         player.pos_x = screen.size_x/2;
@@ -357,4 +365,5 @@ void Drawer::Mini_Map::Draw_Map(){
     drawer.window.draw(map_player);
 
 }
+
 
