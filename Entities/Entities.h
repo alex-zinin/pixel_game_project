@@ -10,21 +10,21 @@
 
 
 const int WALL_HEALTH = 200000;
-const int HOSPITAL_HOUSE_HEALTH = 10000;
+const int HOSPITAL_HOUSE_HEALTH = 100000;
 const int HOSPITAL_MEDICATION = 100;
-const int PLAYER_HEALTH = 100;
-const int BON_FIRE_HEALTH = 10011;
+const int PLAYER_HEALTH = 1000;
+const int BON_FIRE_HEALTH = 1001100;
 const int FIRE_SHOOTER_HEALTH = 40;
 const int FIREBALL_HEALTH = 10;
-const int FIREBALL_DAMAGE = 5;
-const int ZOMBIE_HEALTH = 10000;
+const int FIREBALL_DAMAGE = 10;
+const int ZOMBIE_HEALTH = 100;
 const int ZOMBIE_DAMAGE = 10;
 
-const int WITCH_HEALTH = 1000;
+const int WITCH_HEALTH = 10000;
 const int WITCH_DAMAGE = 1000;
-const int MAGIC_DAMAGE = 5;
+const int MAGIC_DAMAGE = 1;
 const int MAGIC_HEALTH = 10000;
-
+const int ITEM_HEALTH = 1000000;
 
 enum class Entity_Type{
     PLAYER,
@@ -38,6 +38,20 @@ enum class Entity_Type{
     HOSPITAL_HOUSE,
     ZOMBIE,
     MAGIC,
+    PIT,
+    BASIN,
+    BENCH,
+    CART,
+    HAY,
+    PILLAR,
+    STUMP,
+    TORCH,
+    TREE1,
+    TREE2,
+    TREE3,
+    HOUSE,
+
+
 };
 
 
@@ -142,13 +156,21 @@ public:
 
 class Bon_Fire: public Entity{
 public:
-    static const int MAX_NUM_OF_TEXTURE = 3;
+    static const int MAX_NUM_OF_TEXTURE = 5;
 
 public:
 
     Bon_Fire(int x, int y);
 
 
+};
+
+class Torch: public Entity{
+public:
+    static const int MAX_NUM_OF_TEXTURE = 2;
+
+public:
+    Torch(int x, int y);
 };
 
 
@@ -209,11 +231,99 @@ public:
     void Set_Entity_Direction(const Entity& entity) override;
 };
 
+
+class Item: public Entity{
+public:
+
+public:
+    Item(int x, int y, Entity_Type ent_type);
+};
+
+class Pit: public Item{
+public:
+
+public:
+    Pit(int x, int y);
+};
+
+class Basin: public Item{
+public:
+
+public:
+    Basin(int x, int y);
+};
+
+class Bench: public Item{
+public:
+
+public:
+    Bench(int x, int y);
+};
+
+class Cart: public Item{
+public:
+
+public:
+    Cart(int x, int y);
+};
+
+class Hay: public Item{
+public:
+
+public:
+    Hay(int x, int y);
+};
+
+class Pillar: public Item{
+public:
+
+public:
+    Pillar(int x, int y);
+};
+
+class Stump: public Item{
+public:
+
+public:
+    Stump(int x, int y);
+};
+
+class Tree1: public Item{
+public:
+
+public:
+    Tree1(int x, int y);
+};
+
+class Tree2: public Item{
+public:
+
+public:
+    Tree2(int x, int y);
+};
+
+class Tree3: public Item{
+public:
+
+public:
+    Tree3(int x, int y);
+};
+
+
+class House: public Item{
+public:
+
+public:
+    House(int x, int y);
+};
+
+
 std::ostream& operator<<(std::ostream &os, const Wall& wall);
 std::ostream& operator<<(std::ostream &os, const Fireball& f);
 std::ostream& operator<<(std::ostream &os, const Player& p);
 std::ostream& operator<<(std::ostream &os, const Fire_Shooter& f);
 std::ostream& operator<<(std::ostream &os, const Entity& f);
+
 
 
 
